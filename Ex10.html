@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title>Практика 10</title>
+</head>
+
+<body>
+	<h1 align="center">Программа выведет все простые числа</h1>
+
+	<input type="radio" name='Range' value="TaskRange" id=1>По заданию от 2 до 10<br>
+	<input type="radio" name='Range' value="OwnRange" id=2>Самому ввести диапазон<P>
+
+		Введите от какого числа:<br><input type="text" id='firstNumb' size=20><br>
+		Введите до какого числа:<br><input type="text" id='secondNumb' size=20>
+
+		<button onClick='userSubmit()'
+			style="background-color: rgb(131, 150, 238); color: rgb(0, 255, 21);">Вывести</button><br>
+	<P>
+	<div id='result'></div>
+
+	<script type='text/javascript'>
+		function userSubmit() 
+		{
+			let _minValue = document.getElementById('firstNumb').value;
+			let _maxValue = document.getElementById('secondNumb').value;
+
+			let _task = document.querySelector('input[name="Range"]:checked').value;
+			switch (_task) 
+			{
+				//Выбираем какие числа будем выводить (по заданию или свой диапазон)
+				case "TaskRange":
+					document.getElementById('result').innerHTML = PrimeNumbers(2, 10);
+					break;
+				case "OwnRange":
+					document.getElementById('result').innerHTML = PrimeNumbers(Number(_minValue), Number(_maxValue));
+					break;
+				default:
+					document.getElementById('result').innerHTML = "Error!";
+			}
+		}
+
+		function PrimeNumbers(minValue, maxValue) 
+		{
+			if (isNaN(minValue) || isNaN(maxValue) || (minValue >= maxValue)) 
+			{
+				return 'Некорректный ввод!';
+			}
+
+			let _primeNumbers = '';
+			for (let index = minValue; index < maxValue + 1; index++) 
+			{	
+				//Пробегаемся по всем числав в диапазоне и находим простые числа
+				_primeNumbers += isPrime(index);
+			}
+			return "результат: " + _primeNumbers.substring(0, _primeNumbers.length - 1);
+		}
+		//Метод который является число простым или нет
+		function isPrime(n) 
+		{
+			if (n < 2) 
+			{
+				return '';
+			}
+			else if (n === 2) 
+			{
+				return '2 ';
+			}
+
+			let i = 2;
+			const limit = Math.sqrt(n);
+			while (i <= limit) 
+			{
+				if (n % i === 0) 
+				{
+					return '';
+				}
+				i += 1;
+			}
+
+			return n + ' ';
+		}
+
+	</script>
+</body>
+
+</html>

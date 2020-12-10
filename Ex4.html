@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title>Практика 4</title>
+</head>
+
+<body>
+	<h1 align="center">Программа посчитает сколько раз в строке длиной 20 символов повторяется символ под номером 5</h1>
+
+	<p>Введите любую строку длиной 20 символов:</p>
+	<input type="text" id='family' size=60>
+
+	<button onClick='userSubmit()'>Отправить</button><br>
+	<P>
+	<div id='result'></div>
+
+	<script type='text/javascript'>
+	
+		function userSubmit() 
+		{
+			let _string = document.getElementById('family').value;
+
+			document.getElementById('result').innerHTML = PrintString(_string);
+		}
+		function PrintString(stringInput) 
+		{
+			if (stringInput.length != 19)
+				return "Необходимо ввести строку длиной 20 символов";
+			else
+				return "5-й символ (" + stringInput.charAt(4) + ") встречается " +
+					FindCountSymbol(stringInput);
+		}
+		function FindCountSymbol(word) 
+		{
+			let count = 0;
+			for (let i = 0; i < word.length; i++)
+				if (word[i] === word[4])
+					count++;
+			return count;
+		}
+
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title>Практика 3</title>
+</head>
+
+<body>
+	<h1 align="center">Программа посчитает количество согласных и гласных в вашей фамилии</h1>
+
+	<p>Введите вашу фамилию:</p>
+	<input type="text" id='family' size=60 pattern="[А-Яа-яЁё\s]+$">
+
+	<button onClick='userSubmit()'>Отправить</button><br>
+	<P>
+	<div id='result'></div>
+
+	<script type='text/javascript'>
+		function userSubmit() 
+		{
+			let _family = document.getElementById('family').value;
+			let _erroOMG = false;
+
+			if (_family.indexOf(" ") != -1)
+				_erroOMG = true;
+
+			document.getElementById('result').innerHTML =
+				"Ваша фамилия содержит гласных: " + CountVowels(_family) +
+				"<br\t>Ваша фамилия содержит согласных: " + (CountConsonants(_family)) +
+				EvilBrouser(_erroOMG);
+		}
+
+		function CountConsonants(word) 
+		{
+			let _stringsearch = /[бвгджзйклмнпрстфхцчшщБВГДЖЗЙКЛМНПРСТФХЦЧШЩ]/g;
+			let _consonants = word.match(_stringsearch);
+
+			return _consonants ? _consonants.length : "0";
+		}
+
+		function CountVowels(word) 
+		{
+			let _stringsearch = /[аеёиоуыэюяАЕЁИОУЫЭЮЯ]/g;
+			let _vowels = word.match(_stringsearch);
+
+			return _vowels ? _vowels.length : "0";
+		}
+
+		function EvilBrouser(print) 
+		{
+			if (print)
+				return ("<br\t>Я просил ввести только фамилию - это 1 слов,") +
+					(" никакие пробелы тут не нужны, хотя я уже посчитал всё без них :)");
+			else
+				return "";
+		}
+
+	</script>
+</body>
+
+</html>

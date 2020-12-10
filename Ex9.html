@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title>Практика 9</title>
+</head>
+
+<body>
+	<h1 align="center">Программа покажет текущее время и что сейчас надо делать</h1>
+
+	<button onClick='userSubmit()'>Узнать</button><br>
+	<P>
+	<div id='result'></div>
+
+	<script type='text/javascript'>
+		function userSubmit() 
+		{
+			let _dataTime = new Date();
+
+			document.getElementById('result').innerHTML = "Сейчас " + _dataTime.getHours() + ":" + _dataTime.getMinutes() + " и сейчас " + CurrentAction(_dataTime.getHours());
+		}
+
+		function CurrentAction(hour) 
+		{
+			switch (true) 
+			{
+				case hour >= 7 && hour < 8:
+					return 'завтрак';
+				case hour >= 13 && hour < 14:
+					return 'обед';
+				case hour >= 19 && hour < 20:
+					return 'ужин';
+				case hour >= 9 && hour < 18:
+					return 'время работы';
+				case hour >= 18 && hour < 23:
+					return 'отдых';
+				case hour >= 23 && hour < 6:
+					return 'ужин';
+				default:
+					return 'можно ничего не делать';
+			}
+		}
+
+	</script>
+</body>
+
+</html>

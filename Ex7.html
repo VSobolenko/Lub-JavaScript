@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title>Практика 7</title>
+</head>
+
+<body>
+	<h1 align="center">Программа вычисляет
+		сопротивление двух последовательно и
+		параллельно соединенных проводников</h1>
+	<div>R1 - Сопротивление первого резистора</div>
+	<div>R2 - Сопротивление второго резистора</div><P>
+	Введите R1:<br><input type="text" id='R1' size=20><P>
+	Введите R2:<br><input type="text" id='R2' size=20>
+
+	<button onClick='userSubmit()'>Вычислить</button><br>
+	<P>
+	<div id='result'></div>
+
+	<script type='text/javascript'>
+		function userSubmit() 
+		{
+			let _resistance1 = document.getElementById('R1').value;
+			let _resistance2 = document.getElementById('R2').value;
+
+			if (isNaN(_resistance1) || isNaN(_resistance2))
+				document.getElementById('result').innerHTML = "Некорректный ввод!";
+			else
+				document.getElementById('result').innerHTML =
+					PrintResistance(Number(_resistance1), Number(_resistance2));
+		}
+
+		function PrintResistance(R1, R2) 
+		{
+			let var1 = SerialConnect(R1, R2);
+			let var2 = ParallelConnect(R1, R2);
+
+			if (!var1 || !var2)
+				return "На 0 делить нельзя!";
+			else
+				return var1 + var2;
+		}
+
+		function SerialConnect(R1, R2) 
+		{
+			if (R1 == 0 || R2 == 0)
+				return false;
+			else
+				return "R(посл) = " + (R1 + R2);
+		}
+
+		function ParallelConnect(R1, R2) 
+		{
+			if (R1 == 0 || R2 == 0)
+				return false;
+			else
+				return "<br\t>R(парал) = " + (R1 * R2) / (R1 + R2);
+		}	
+	</script>
+</body>
+
+</html>

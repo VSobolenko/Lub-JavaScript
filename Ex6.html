@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title>Практика 6</title>
+</head>
+
+<body>
+	<h1 align="center">Программа вычисляет сопротивление участка цепи</h1>
+	<h3>R = U / I</h3>
+	<div>I - Ток (A)</div>
+	<div>U - Напряжение (В)</div>
+	<div>R - Сопротивление (Ом)</div>
+	<P>
+	Введите число U:</br><input type="text" id='Voltage' size=20><P>
+	Введите число I:</br><input type="text" id='Amperage' size=20>
+
+	<button onClick='userSubmit()' >Вычислить</button><br>
+	<P>
+	<div id='result'></div>
+
+	<script type='text/javascript'>
+		function userSubmit() 
+		{
+			let _voltage = document.getElementById('Voltage').value;
+			let _amperage = document.getElementById('Amperage').value;
+
+			if (isNaN(_voltage) || isNaN(_amperage)) 
+			{
+				document.getElementById('result').innerHTML = "Некорректный ввод!";
+			}
+			else 
+			{
+				document.getElementById('result').innerHTML = CalculateResistance(_voltage, _amperage);
+			}
+		}
+
+		function CalculateResistance(voltage, amperage) 
+		{
+			if (amperage == 0) 
+			{
+				return "На на 0 делить нельзя!";
+			}
+			else 
+			{
+				return "R = " + (voltage / amperage) + " Ом";
+			}
+		}
+	</script>
+</body>
+
+</html>

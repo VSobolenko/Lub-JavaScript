@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title>Практика 5</title>
+</head>
+
+<body>
+	<h1 align="center">Мини простой калькулятор</h1>
+
+	<input type="radio" name='ArSign' value="Addition" id=1>Сложение<br>
+	<input type="radio" name='ArSign' value="Subtraction" id=2>Вычитание<br>
+	<input type="radio" name='ArSign' value="Multiplication" id=3>Умножение<br>
+	<input type="radio" name='ArSign' value="Division" id=4>Деление<P>
+
+	Введите первое число:<br><input type="text" id='numberX' size=20><P>
+	Введите второе число:<br><input type="text" id='numberY' size=20>
+
+	<button onClick='userSubmit()'>Отправить</button><br>
+	<P>
+	<div id='result'></div>
+
+	<script type='text/javascript'>
+		function userSubmit() 
+		{
+			let _numberX = document.getElementById('numberX').value;
+			let _numberY = document.getElementById('numberY').value;
+			let _sign = document.querySelector('input[name="ArSign"]:checked').value;
+			if (isNaN(_numberX) || isNaN(_numberY)) 
+			{
+				document.getElementById('result').innerHTML = "Некорректный ввод!";
+			}
+			else 
+			{
+				document.getElementById('result').innerHTML = Rezult(_sign, _numberX, _numberY);
+			}
+		}
+
+		function Rezult(id, numberX, numberY) 
+		{
+			switch (id) 
+			{
+				case "Addition":
+					return Number(numberX) + Number(numberY);
+					break;
+				case "Subtraction":
+					return Number(numberX) - Number(numberY);
+					break;
+				case "Multiplication":
+					return Number(numberX) * Number(numberY);
+					break;
+				case "Division":
+					if (numberY == 0)
+						return "Нельзя делить на 0!";
+					return Number(numberX) / Number(numberY);
+					break;
+				default:
+					return "Error";
+			}
+		}
+	</script>
+</body>
+
+</html>

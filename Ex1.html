@@ -1,0 +1,41 @@
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title>Практика 1</title>
+</head>
+
+<body>
+	<p>Введите X</p>
+	<input id='userInput' size=60>
+	<button onClick='userSubmit()'>Вычислить</button><br>
+	<P>
+	<div id='result'></div>
+
+	<script type='text/javascript'>
+		function userSubmit() 
+		{
+			var x = document.getElementById('userInput').value;
+			if (!x.match(/^\d+/)) 
+			{
+				document.getElementById('result').innerHTML = 'Некорректный ввод';
+			}
+			else 
+			{
+				document.getElementById('result').innerHTML = 'Результат = ' + Formyla(x);
+			}
+		}
+		function Formyla(x) 
+		{
+			var chiclitel = x ** 2 - 7 * x + 10;
+			var znamenatel = x ** 2 - 8 * x + 12;
+			if (znamenatel == 0) 
+			{
+				return 'В числителе 0, на 0 делить нельзя!'
+			}
+			return chiclitel / znamenatel;
+		}
+	</script>
+</body>
+
+</html>

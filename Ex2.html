@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title>Практика 2</title>
+</head>
+
+<body>
+	<p>Введите массу гантели 1:</p>
+	<input type="text" id='massGantl_1' size=60 pattern="^[0-9]+$">
+
+	<p>Введите массу гантели 2:</p>
+	<input type="text" id='massGantl_2' size=60 pattern="^[0-9]+$">
+
+	<p>Введите массу гантели 3:</p>
+	<input type="text" id='massGantl_3' size=60 pattern="^[0-9]+$">
+
+	<button onClick='userSubmit()'>Отправить</button><br>
+	<P>
+	<div id='result'></div>
+
+	<script type='text/javascript'>
+		function userSubmit() 
+		{
+			var massGantl_1 = parseFloat(document.getElementById('massGantl_1').value);
+			var massGantl_2 = parseFloat(document.getElementById('massGantl_2').value);
+			var massGantl_3 = parseFloat(document.getElementById('massGantl_3').value);
+
+			if (isNaN(massGantl_1) || isNaN(massGantl_2) || isNaN(massGantl_3)) 
+			{
+				document.getElementById('result').innerHTML = 'Необходимо ввести что-то нормальное! :('
+			}
+			else 
+			{
+				document.getElementById('result').innerHTML =
+					'Массы 3-х гантелей: ' + AllMass(massGantl_1, massGantl_2, massGantl_3) +
+					'<br\t>Самая тяжёлая: ' + MostHeavy(massGantl_1, massGantl_2, massGantl_3) +
+					'<br\t>Cамая лёгкая: ' + MostEasy(massGantl_1, massGantl_2, massGantl_3);
+			}
+		}
+
+		function AllMass(var1, var2, var3) 
+		{
+			return var1 + var2 + var3;
+		}
+
+		function MostHeavy(var1, var2, var3) 
+		{
+			let _mostHeavy = [var1, var2, var3];
+			return Math.max.apply(null, _mostHeavy);
+		}
+
+		function MostEasy(var1, var2, var3) 
+		{
+			let _mostEasy = [var1, var2, var3];
+			return Math.min.apply(null, _mostEasy);
+		}
+	</script>
+</body>
+
+</html>

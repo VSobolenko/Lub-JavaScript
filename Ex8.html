@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title>Практика 8</title>
+</head>
+
+<body>
+	<h1 align="center">Программа заменит в каждом слове 1 встречную букву "a"
+		буквой "о", удалив все остальные, в противном случае, ничего делать не будет
+	</h1>
+	<div>Введите любой текст:</div>
+	<input type="text" id='notModifyText' size=60>
+
+	<button onClick='userSubmit()'>Обработать</button><br>
+	<P>
+	<div id='result'></div>
+
+	<script type='text/javascript'>
+		function userSubmit() 
+		{
+			let _text = document.getElementById('notModifyText').value;
+
+			document.getElementById('result').innerHTML = "Преобразованный текст:<br>" + ReplaceA(_text);
+		}
+
+		function ReplaceA(notModifyText) 
+		{
+			//Преобразуем из текста в  массив строк
+			let _arrayText = notModifyText.split(" ");
+			for (let i = 0; i < _arrayText.length; i++) 
+			{
+				//Преобразуем из 1 слова в массив символов этого слова
+				let _oneWord = _arrayText[i].split("");
+				//Чтобы менялась только первая буква "а/А", меняем на false когда поменяли, чтобы больше не менять
+				let eventModify = true;
+				for (let j = 0; j < _oneWord.length; j++) 
+				{
+					//--------------Русские буквы--------------
+					if (_oneWord[j] == 'а' && eventModify) 
+					{
+						//Здесь заменяем нашу Первую букву "а"
+						_oneWord[j] = "о";
+						eventModify = false;
+					}
+					if (_oneWord[j] == 'А' && eventModify) 
+					{
+						//Или если будет "А" Первой заглавной буквой, то меняем её здесь
+						_oneWord[j] = "О";
+						eventModify = false;
+					}
+
+					//--------------Английские буквы--------------
+					if (_oneWord[j] == 'a' && eventModify) 
+					{
+						//Здесь заменяем нашу Первую букву "а"
+						_oneWord[j] = "o";
+						eventModify = false;
+					}
+					if (_oneWord[j] == 'A' && eventModify) 
+					{
+						//Или если будет "А" Первой заглавной буквой, то меняем её здесь
+						_oneWord[j] = "O";
+						eventModify = false;
+					}
+
+					//-------------Остальное------------
+					if ((_oneWord[j] == 'а' || _oneWord[j] == 'a') && !eventModify) 
+					{
+						//Здесь заменяем все буквы "а", кроме Первой
+						_oneWord[j] = "";
+					}
+				}
+				//Обратно преобразуем массив символов в слово
+				_arrayText[i] = _oneWord.join('');
+			}
+			//Обратно преобрзуем массив слов в один текст
+			_arrayText = _arrayText.join(' ');
+			return _arrayText;
+		}
+	</script>
+</body>
+
+</html>
