@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title>Практика 15</title>
+</head>
+
+<body>
+	<h1 align="center">Программа выведит значения функции Y = 4 * SIN (T) - 0.5 * SIN (T) на заданном промежутке с
+		заданным шагом</h1>
+
+	<input type="radio" name='Range' value="TaskRange" id=1>По заданию от на промежутке [0.1, 0.8] с шагом 0.05<br>
+	<input type="radio" name='Range' value="OwnRange" id=2>Самому ввести диапазон<P>
+
+		Введите начало промежутка:<br><input type="text" id='beginInternal' size=20>
+	<P>
+		Введите конец промежутка:<br><input type="text" id='endInternal' size=20>
+	<P>
+		Введите шаг:<br><input type="text" id='step' size=20>
+	<P>
+
+		<button onClick='userSubmit()'
+			style="background-color: rgb(131, 150, 238); color: rgb(0, 255, 21);">Вывести</button><br>
+	<P>
+	<div id='result'></div>
+
+	<script type='text/javascript'>
+		function userSubmit() 
+		{
+			let _beginInternal = document.getElementById('beginInternal').value;
+			let _endInternal = document.getElementById('endInternal').value;
+			let _step = document.getElementById('step').value;
+
+			if (isNaN(_beginInternal) || isNaN(_endInternal) || isNaN(_step)) 
+			{
+				document.getElementById('result').innerHTML = "Некорректный ввод!";
+			}
+
+			let _task = document.querySelector('input[name="Range"]:checked').value;
+			switch (_task) 
+			{
+				//Выбираем какой диапазон чисел использовать (по заданию или свой диапазон)
+				case "TaskRange":
+					document.getElementById('result').innerHTML = FunctionValues(0.1, 0.8, 0.05);
+					break;
+				case "OwnRange":
+					document.getElementById('result').innerHTML = FunctionValues(Number(_beginInternal), Number(_endInternal), Number(_step));
+					break;
+				default:
+					document.getElementById('result').innerHTML = "Error!";
+			}
+		}
+
+		// Y = 4 * SIN (T) - 0.5 * SIN
+		function FunctionValues(beginInternal, endInternal, step) 
+		{
+			let rezult = "";
+			for (var i = beginInternal; i <= endInternal; i += step) 
+			{
+				rezult += Math.sin(i) * 3.5 + "<br>";
+			}
+			return rezult;
+		}
+
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title>Практика 11</title>
+</head>
+
+<body>
+	<h1 align="center">Программа выполнит следующие действия:</h1>
+	<h3>1) Посчитает количество слов<br>
+		2) Найдёт длину максимального и минимального слова<br>
+		3) Найдёт среднюю длину слов
+	</h3>
+
+	Введите вашу строку:<br><input type="text" id='strText' size=40>
+
+	<button onClick='userSubmit()'
+		style="background-color: rgb(150, 189, 152); color: rgb(236, 103, 93);">Вычислить</button><br>
+	<P>
+	<div id='result'></div>
+
+	<script type='text/javascript'>
+		function userSubmit() 
+		{
+			let _text = document.getElementById('strText').value;
+
+			document.getElementById('result').innerHTML = PrintRezult(_text);
+		}
+		//Преобразует строку в массив только слов
+		function MakeOnlyWords(text) 
+		{
+
+			let _modifyText;
+			//Здесь пишим символы, которые хотим удалить
+			let _deleteSumbol = /[!@#$%^&*()?;':"{}_+=1234567890,./<>]/g;
+			_modifyText = text.replace(_deleteSumbol, '');
+
+			//Удаляем все пробелы
+			_modifyText = _modifyText.replace(/\s+/g, ' ').trim();
+
+			//Делим наши строки на отдельные слова
+			_modifyText = _modifyText.split(' ');
+
+			return _modifyText;
+		}
+
+		//Вычисляет сколько всего слов в массиве
+		function TotalWords(text) 
+		{
+			if (text == "") 
+			{
+				return 0;
+			}
+			return MakeOnlyWords(text).length;
+		}
+
+		//Вычисляет самое длинное слово и находит его длину 
+		function LongestWord(text) 
+		{
+			let _arraText = MakeOnlyWords(text);
+			let _longerWord = _arraText[0];
+			for (let i = 0; i < _arraText.length; i++) 
+			{
+				if (_arraText[i].length > _longerWord.length) 
+				{
+					_longerWord = _arraText[i];
+				}
+			}
+			return _longerWord.length + " (слово - " + _longerWord + ")";
+		}
+
+		//Вычисляет самое короткое слово и находит его длину 
+		function ShortestWord(text) 
+		{
+			let _arraText = MakeOnlyWords(text);
+			let _shortWord = _arraText[0];
+			for (let i = 0; i < _arraText.length; i++) 
+			{
+				if (_arraText[i].length < _shortWord.length) 
+				{
+					_shortWord = _arraText[i];
+				}
+			}
+			return _shortWord.length + " (слово - " + _shortWord + ")";
+		}
+
+		//Вычисляет среднюю длину слов
+		function AvarageWord(text) 
+		{
+			let _arraText = MakeOnlyWords(text);
+			let _totalLetters = 0;
+			for (let i = 0; i < _arraText.length; i++) 
+			{
+				_totalLetters += _arraText[i].length;
+			}
+			return _totalLetters / _arraText.length;
+
+		}
+
+		//Выводим результаты наших вычислений над строкой
+		function PrintRezult(text) 
+		{
+			return "В вашей строке всего слов: " + TotalWords(text) + "<br>" +
+				"Длина максимального слова составляет: " + LongestWord(text) + "<br>" +
+				"Длина минимального слова составляет: " + ShortestWord(text) + "<br>" +
+				"Средняя длина слов: " + AvarageWord(text) + "<br>";
+		}
+	</script>
+</body>
+
+</html>

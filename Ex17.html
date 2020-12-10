@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title>Практика 17</title>
+</head>
+
+<body>
+	<h1 align="center">Программа вычислит площадь треугольника</h1>
+
+	<input type="radio" name='Range' value="threeSides" id=1>По длинам трех сторон<br>
+	<input type="radio" name='Range' value="OwnRange" id=2>По трем углам и стороне<br>
+	<input type="radio" name='Range' value="OwnRange" id=3>По двум сторонам и углу между ними<br>
+	<input type="radio" name='Range' value="OwnRange" id=4>По двум сторонам и необразованному ими углу<br>
+	<input type="radio" name='Range' value="OwnRange" id=5>По высоте треугольника и стороне к которой опущена эта высота<br>
+
+		Введите начало промежутка:<br><input type="text" id='beginInternal' size=20>
+	<P>
+		Введите конец промежутка:<br><input type="text" id='endInternal' size=20>
+	<P>
+		Введите шаг:<br><input type="text" id='step' size=20>
+	<P>
+
+		<button onClick='userSubmit()'
+			style="background-color: rgb(131, 150, 238); color: rgb(0, 255, 21);">Вывести</button><br>
+	<P>
+	<div id='result'></div>
+
+	<script type='text/javascript'>
+		function userSubmit() 
+		{
+		let id = document.querySelector('input[name="Range"]:checked').value;    		
+		let s;
+    switch (id) {
+        case 1:
+            s = method1();
+            break;
+        case 2:
+            s = method2();
+            break;
+        case 3:
+            s = method3();
+            break;
+        case 4:
+            s = method4();
+            break;
+        case 5:
+            s = method5();
+            break;
+        case 6:
+            s = method6();
+            break;
+        default:
+            document.getElementById("rezult").innerHTML = "Такого варианта нет!";
+		}
+function method1() {
+        let a = parseInt(prompt("Введите сторону a:"));
+        let b = parseInt(prompt("Введите сторону b:"));
+        let c = parseInt(prompt("Введите сторону c:"));
+        if (a + b < c || a + c < b || b + c < a) alert("Такой треугольник не существует");
+        let p = (a + b + c) / 2;
+        return Math.sqrt((p * (p - a) * (p - b) * (p - c)));
+    }
+
+    function method2() {
+        let a = parseInt(prompt("Введите сторону a:"));
+        let a1 = parseInt(prompt("Введите угл альфа:"));
+        let a2 = parseInt(prompt("Введите угл бета:"));
+        let a3 = parseInt(prompt("Введите угл гамма:"));
+        if (a1 < -1 || a1 > 1 || a2 < -1 || a2 > 1 || a3 < -1 || a3 > 1) alert("Такой треугольник не существует");
+        let p = 0.5 * Math.pow(a, 2) * (a2 * a3 / a1);
+        return p;
+    }
+
+    function method3() {
+        let a = parseInt(prompt("Введите сторону a:"));
+        let b = parseInt(prompt("Введите сторону b:"));
+        let a1 = parseInt(prompt("Введите угл альфа:"));
+        return (a * b * Math.sin(a1)) / 2;
+    }
+
+    function method4() {
+        alert("Треугольник должен быть прямоугольным");
+        let a = parseInt(prompt("Введите сторону a:"));
+        let b = parseInt(prompt("Введите сторону b:"));
+        return (a * b) / 2;
+    }
+
+    function method5() {
+        let h = parseInt(prompt("Введите высоту:"));
+        let c = parseInt(prompt("Введите основание:"));
+        return (h * c) / 2;
+    }
+
+    function method6() {
+        let a = parseInt(prompt("Введите сторону a:"));
+        let a1 = parseInt(prompt("Введите угл альфа:"));
+        let a2 = parseInt(prompt("Введите угл бета:"));
+        let a3 = parseInt(prompt("Введите угл гамма:"));
+        return 0.5 * Math.pow(a1, 2) * (Math.sin(a1) * Math.sin(a3) / Math.sin(a2));
+    }
+
+	</script>
+</body>
+
+</html>

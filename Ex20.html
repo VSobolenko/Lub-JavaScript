@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title>Практика 15</title>
+</head>
+
+<body>
+	<h1 align="center">Программа выведит значения функции Y = 4 * SIN (T) - 0.5 * SIN (T) на заданном промежутке с
+		заданным шагом</h1>
+
+		Введите :<br><input type="text" id='str' size=20>
+	<P>
+
+		<button onClick='userSubmit()'
+			style="background-color: rgb(131, 150, 238); color: rgb(0, 255, 21);">Вывести</button><br>
+	<P>
+	<div id='result'></div>
+
+	<script type='text/javascript'>
+		function userSubmit(){
+    let k = document.getElementById("str").value;
+    let n = [];
+
+        for( i = 0; i < k; i++){
+        n.push(Math.round(Math.random() * 10)); //элементы значения 0-9
+    }
+    document.getElementById("rezult").innerHTML = n;
+
+    let sum = 0;
+    for (let i = 0; i < k; i++){
+        sum += n[i];
+    }
+    document.getElementById("rezult").innerHTML = sum;
+}
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title>Практика 14</title>
+</head>
+
+<body>
+	<h1 align="center">Программа проверит, принадлежит ли точка с координатами X и Y к кругу с центром C (Xc, Yc) и
+		радиусом R </h1>
+	Введите точку X:&ensp;&ensp;&ensp;Введите точку Y:<br>
+	<input type="text" id='pointX' size=16>
+	<input type="text" id='pointY' size=16>
+	<P>
+		Введите точку Xc:&ensp;&ensp;Введите точку Yc:<br>
+		<input type="text" id='circleX' size=16>
+		<input type="text" id='circleY' size=16>
+	<P>
+		Введите радиус R:<br>
+		<input type="text" id='circleR' size=16><br>
+
+		<button onClick='userSubmit()'
+			style="background-color: rgb(131, 150, 238); color: rgb(0, 255, 21);">Узнать</button><br>
+	<P>
+	<div id='result'></div>
+
+	<script type='text/javascript'>
+		function userSubmit() 
+		{
+			let _pointX = document.getElementById('pointX').value;
+			let _pointY = document.getElementById('pointY').value;
+			let _circleX = document.getElementById('circleX').value;
+			let _circleY = document.getElementById('circleY').value;
+			let _circleR = document.getElementById('circleR').value;
+
+			document.getElementById('result').innerHTML = isInclude(_pointX, _pointY, _circleX, _circleY, _circleR);
+		}
+
+		// Метод определяет, относится ли она кругу с центром C (Xc, Yc) и радиусом R
+		function isInclude(pointX, pointY, circleX, circleY, circleR) 
+		{
+			if (DistanceBetweenPoints(pointX, pointY, circleX, circleY) > circleR) 
+			{
+				return "точка не относится к кругу";
+			}
+			else 
+			{
+				return "точка относится к кругу"
+			}
+		}
+
+		// Метод, который возращает расстояние между двумя точками
+		function DistanceBetweenPoints(pointX1, pointY1, pointX2, pointY2,) 
+		{
+			return Math.sqrt(Math.pow(pointX1 - pointX2, 2) + Math.pow(pointY1 - pointY2, 2));
+		}
+
+	</script>
+</body>
+
+</html>

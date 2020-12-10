@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title>Практика 16</title>
+</head>
+
+<body>
+	<h1 align="center">Программа определит угол, под которым тело брошено по отношению к горизонту</h1>
+
+		Введите V0:<br><input type="text" id='v0_enter' size=20>
+	<P>
+		Введите t<br><input type="text" id='t_enter' size=20>
+	<P>
+
+		<button onClick='userSubmit()'
+			style="background-color: rgb(131, 150, 238); color: rgb(0, 255, 21);">Рассчитать</button><br>
+	<P>
+	<div id='result'></div>
+
+	<script type='text/javascript'>
+		function userSubmit() 
+		{
+			let _speed = document.getElementById('v0_enter').value;
+			let _time = document.getElementById('t_enter').value;
+
+			if (isNaN(_speed) || isNaN(_time)) 
+			{
+				document.getElementById('result').innerHTML = "Некорректный ввод!";
+			}
+
+			document.getElementById('result').innerHTML = "Угол равен " + CalculateAngle(_speed, _time);
+		}
+
+		function CalculateAngle(speed, time) 
+		{
+			let _g = 9.81;
+			let _angle = Math.asin((_g * time) / (2 * speed));
+			return _angle;
+		}
+
+	</script>
+</body>
+
+</html>
